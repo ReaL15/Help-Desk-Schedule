@@ -2,6 +2,11 @@ import './bootstrap';
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import '../css/app.css';
+import { route } from 'ziggy-js';
+import Ziggy from './ziggy';
+
+window.route = (name, params, absolute, config = Ziggy) =>
+    route(name, params, absolute, config);
 
 createInertiaApp({
   resolve: (name) => {

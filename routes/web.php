@@ -3,23 +3,33 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\UserController;
 
+// Auth Routes
 Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin', function () {
-        return Inertia::render('Admin/Dashboard');
+// Admin Routes
+Route::middleware(['auth', 'role:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/dashboard', function () {
+            return Inertia::render('Admin/Dashboard');
+        })->name('dashboard');
+        Route::resource('users', UserController::class);
     });
-});
 
-Route::middleware(['auth', 'role:user'])->group(function () {
-    Route::get('/users', function () {
-        return Inertia::render('Users/Dashboard');
+// User Routes
+Route::middleware(['auth', 'role:user'])
+    ->prefix('users')
+    ->name('users.')
+    ->group(function () {
+        Route::get('/dashboard', function () {
+            return Inertia::render('Users/Dashboard');
+        })->name('dashboard');
     });
-});
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+// Default Redirect
+Route::get('/', fn() => redirect()->route('login'));
