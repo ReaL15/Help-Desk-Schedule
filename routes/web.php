@@ -21,9 +21,5 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 });
 
 Route::get('/', function () {
-    return Inertia::render('Dashboard');
-})->middleware('auth');
-
-Route::get('/', function () {
-    return Inertia::render('Home');
+    return redirect()->route('login');
 });

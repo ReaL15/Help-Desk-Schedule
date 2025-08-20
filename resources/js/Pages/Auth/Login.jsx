@@ -20,54 +20,44 @@ export default function Login() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-radial from-sky-100 via-white to-sky-50">
-      <Card className="w-[400px] shadow-2xl rounded-3xl border-0 bg-white/80 backdrop-blur-sm">
-        <CardHeader className="pb-6">
-          <CardTitle className="text-center text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-800 bg-clip-text text-transparent">
+    <div className="flex items-center justify-center min-h-screen bg-radial from-sky-300 via-sky-100 to-white">
+      <Card className="w-[500px] shadow-sm rounded-2xl border border-sky-200 bg-white backdrop-blur-sm">
+        <CardHeader>
+          <CardTitle className="py-4 text-center text-3xl font-bold bg-gradient-to-r from-gray-800 to-sky-600 bg-clip-text text-transparent">
             Welcome Back
           </CardTitle>
-          <p className="text-center text-sm text-gray-600 mt-2">Sign in to your account</p>
         </CardHeader>
         <CardContent className="px-8 pb-8">
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Email */}
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="email" className="text-md font-semibold text-gray-700">
                 Email
               </Label>
-              <Input
-                id="email"
-                type="email"
+              <Input id="email" type="email"
                 value={data.email}
                 onChange={(e) => setData("email", e.target.value)}
                 placeholder="you@example.com"
-                className="h-12 rounded-xl border-gray-200 focus:border-sky-400 focus:ring-sky-400/20"
+                className="h-12 rounded-lg border-gray-300 focus:ring-sky-400"
               />
               {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
             </div>
 
-            {/* Password */}
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="password" className="text-md font-semibold text-gray-700">
                 Password
               </Label>
-              <Input
-                id="password"
-                type="password"
+              <Input id="password" type="password"
                 value={data.password}
                 onChange={(e) => setData("password", e.target.value)}
                 placeholder="Enter your password"
-                className="h-12 rounded-xl border-gray-200 focus:border-sky-400 focus:ring-sky-400/20"
+                className="h-12 rounded-lg border-gray-300 focus:border-sky-400"
               />
               {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
             </div>
 
-            {/* Remember Me */}
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="remember"
-                  checked={data.remember}
+                <Checkbox id="remember" checked={data.remember}
                   onCheckedChange={(value) => setData("remember", value)}
                   className="data-[state=checked]:bg-sky-600 data-[state=checked]:border-sky-600"
                 />
@@ -81,9 +71,7 @@ export default function Login() {
             </div>
 
             {/* Button */}
-            <Button
-              type="submit"
-              className="w-full h-12 rounded-xl bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-700 hover:to-sky-800 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-200 border-0"
+            <Button type="submit" className="w-full h-12 rounded-lg bg-sky-500 hover:bg-sky-700 text-lg text-white font-medium transition-all duration-200 active:scale-95"
               disabled={processing}
             >
               {processing ? (
